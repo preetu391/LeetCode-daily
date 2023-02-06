@@ -17,7 +17,8 @@ vector<int> shuffle(vector<int> &nums, int n)
 
 int main()
 {
+    int n = 8;
     vector<int> v = {1, 2, 3, 4, 5, 6, 7, 8};
-    shuffle(v);
+    shuffle(v, n);
     return 0;
 }
