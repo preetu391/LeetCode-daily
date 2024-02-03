@@ -23,19 +23,18 @@ public:
 class Solution_Tabulation {
 public:
     int maxSumAfterPartitioning(vector<int>& arr, int k) {
-        int n=arr.size();
-        vector<int> dp(n,0);
-        dp[0]=arr[0];
-        for(int i=1;i<n;i++){
-          int max_ele = 0, sum = 0, len=1;
-          for(int j=i;j>=max(0,i-k+1);j--){
-              max_ele = max(max_ele, arr[j]);
-              if(j>0) sum = max(sum, dp[j-1]+len*max_ele);
-              if(j==0) sum = max(sum,len*max_ele);
-              len++;
-            }
-            dp[i]=sum;
+        int n = arr.size();
+        vector<int> dp(n+1,0);
+        dp[n]=0;
+        for(int i=n-1;i>=0;i--){
+          int max_ele = 0, sum =0, len=1;
+          for(int j=i;j<min(i+k,n);j++){
+            max_ele = max(max_ele, arr[j]);
+            sum = max(sum, max_ele*len+dp[j+1]);
+            len++;
+          } 
+          dp[i] = sum;
         }
-        return dp[n-1];
+        return dp[0];
     }
 };
