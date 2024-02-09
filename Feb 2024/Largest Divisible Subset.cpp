@@ -9,7 +9,7 @@ public:
         sort(nums.begin(), nums.end());
         int n = nums.size();
         vector<int> dp(n, 1), bt(n);
-        int max_len = 1, prev_ind = 0;
+        int max_len = 1, ind = 0;
         for (int i = 0; i < n; i++)
         {
             bt[i] = i;
@@ -24,15 +24,15 @@ public:
             if (dp[i] > max_len)
             {
                 max_len = dp[i];
-                prev_ind = i;
+                ind = i;
             }
         }
         vector<int> ans;
-        ans.push_back(nums[prev_ind]);
-        while (bt[prev_ind] != prev_ind)
+        ans.push_back(nums[ind]);
+        while (bt[ind] != ind)
         {
-            prev_ind = bt[prev_ind];
-            ans.push_back(nums[prev_ind]);
+            ind = bt[ind];
+            ans.push_back(nums[ind]);
         }
         return ans;
     }
