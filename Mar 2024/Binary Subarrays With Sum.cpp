@@ -44,15 +44,15 @@ public:
     {
         if (goal < 0)
             return 0;
-        int sum = 0, j = 0, count = 0;
-        for (int i = 0; i < nums.size(); i++)
+        int sum = 0, i = 0, count = 0;
+        for (int j = 0; j < nums.size(); j++)
         {
-            sum += nums[i];
+            sum += nums[j];
             while (sum > goal)
             {
-                sum -= nums[j++];
+                sum -= nums[i++];
             }
-            count += (i - j + 1);
+            count += (j - i + 1);
         }
         return count;
     }
